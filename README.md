@@ -21,3 +21,19 @@ Para ejecutar el segundo ejemplo:
 1. Abrir terminal en la carpeta raíz.
 2. Ejecutar: `sh "ejemplo 2/run.sh"`
 3. Acceder a: `http://localhost:8081`
+
+ ## Ejemplo 3: 
+### Correr `run.sh` 
+- Crea la carpeta `wordpress`, la red `mi-network`, el contenedor **MariaDB** (volumen `wordpress-db`) y **WordPress** enlazado a la base, publicado en **http://localhost:8080**.
+- Hace falta tener **Docker en ejecución** (en Windows: **Docker Desktop** abierto).
+- En **Windows + Git Bash**, el contenedor de **MariaDB puede fallar** por la conversión de rutas de MSYS (`/var/lib/mysql` se transforma mal).
+- **Alternativa:** ejecutar los mismos `docker` desde **PowerShell**, o en Git Bash: `export MSYS_NO_PATHCONV=1` y luego `./run.sh`.
+<img width="882" height="692" alt="ejemplo3" src="https://github.com/user-attachments/assets/7dcb593d-f843-4e4a-a742-7489751e4a92" />
+
+### Inconvenientes de scripts de S.O. (portabilidad, etc.)
+- **Shell:** el script usa Bash; en Windows no existe “de fábrica” (Git Bash, WSL, etc.).
+- **Rutas:** `$(pwd)` y *bind mounts* cambian según SO y terminal; en Windows/Git Bash hay casos donde Docker recibe rutas incorrectas.
+- **Re-ejecución:** sin limpiar antes, pueden fallar `mkdir wordpress`, `docker network create` y `docker run` por nombres ya usados.
+- **Dependencias:** Docker instalado, daemon activo, imágenes y puertos disponibles.
+- **Seguridad:** contraseñas en claro en el script.
+- **Docker:** uso de `--link` (enfoque legado frente a DNS en redes de usuario).
