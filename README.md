@@ -50,6 +50,7 @@ Stack **Linux + Nginx + MariaDB + PHP-FPM** y **phpMyAdmin**, el `docker-compose
 - **phpMyAdmin** contra el servicio `mariadb`.
 
 ### URLs 
+<img width="581" height="628" alt="ejemplo 7" src="https://github.com/user-attachments/assets/2a03396f-8600-454b-b3b4-dbb931be99ab" />
 
 | Servicio     | URL / acceso |
 |-------------|----------------|
