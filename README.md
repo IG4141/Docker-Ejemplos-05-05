@@ -37,3 +37,32 @@ Para ejecutar el segundo ejemplo:
 - **Dependencias:** Docker instalado, daemon activo, imágenes y puertos disponibles.
 - **Seguridad:** contraseñas en claro en el script.
 - **Docker:** uso de `--link` (enfoque legado frente a DNS en redes de usuario).
+
+## Ejemplo 7 (LEMP con Docker Compose)
+
+Stack **Linux + Nginx + MariaDB + PHP-FPM** y **phpMyAdmin**, el `docker-compose` usa **rutas relativas**
+
+### Qué incluye
+
+- **MariaDB 10.5** con datos en `./mariadb/data` e inicialización SQL en `./mariadb/sql/init-db.sql`.
+- **PHP 8.2-FPM** (imagen local `ejem07-php-fpm:local`) con extensiones PDO/MySQL; código en `./code/myapp`.
+- **Nginx** sirviendo la app y enviando PHP a FPM.
+- **phpMyAdmin** contra el servicio `mariadb`.
+
+### URLs 
+
+| Servicio     | URL / acceso |
+|-------------|----------------|
+| Aplicación  | http://localhost:8880/ |
+| phpMyAdmin  | http://localhost:8881/ |
+| MariaDB (desde el host) | `localhost:3307` → contenedor `3306` |
+
+### Uso
+
+1. Abrir **Docker Desktop** (o el motor Docker).
+2. En la carpeta del ejemplo (`ejem07`):
+
+   **PowerShell / CMD**
+
+   ```text
+   docker compose up -d --build
