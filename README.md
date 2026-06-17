@@ -67,3 +67,18 @@ Stack **Linux + Nginx + MariaDB + PHP-FPM** y **phpMyAdmin**, el `docker-compose
 
    ```text
    docker compose up -d --build
+
+## Ejemplo 9: Proxy Inverso con Nginx y Apache
+
+Demostración de un proxy inverso (**Nginx**) que recibe peticiones externas y deriva el tráfico hacia dos servidores web independientes según el puerto de entrada:
+
+* **Puerto 8080** ➔ Redirecciona al contenedor interno **Nginx** (Sitio 1).
+* **Puerto 8081** ➔ Redirecciona al contenedor interno **Apache** (Sitio 2).
+
+### 🚀 Despliegue rápido
+```bash
+# Limpiar y levantar el entorno con las imágenes actualizadas
+docker compose down && docker compose up --build -d
+
+# Verificar que los tres contenedores queden en estado 'Up'
+docker compose ps   
